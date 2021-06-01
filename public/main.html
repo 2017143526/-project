@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = 'UTF-8'/>
+        <title>main</title>
+        <link rel = "stylesheet" type = "text/css" href = "main.css"/> 
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>
+            
+            //geolocation API와 서버로 100m 이내의 방의 수, 방들 이름, 방 인원수, 방까지의 거리 등 가져옴. 
+            let N = 2; //예시
+            let roomName = ["연세MT", "인프 뒷풀이"]; //예시
+            let roomPersonNum = [6, 4]; //예시
+            let roomDist = [70, 40]; //예시
+            var username;
+
+             $(document).ready(function () {
+                username = location.href.substr(
+                location.href.lastIndexOf('?') + 1
+                );
+                username = decodeURI(username);
+                
+                document.querySelector('#main_p_1').innerHTML = `<strong>"${username}"</strong>님 환영합니다!`
+
+                for(let i=0; i<N; i++){
+                    let room = createNew(i, roomName[i], roomPersonNum[i], roomDist[i]);
+                    document.querySelector('#main_div_3').appendChild(room);
+                }
+
+            });
+
+            function createNew(i, rn, rpn, rd){
+                const newRoom = document.createElement("div");
+                const roomN = document.createElement("p");
+                const roomPN = document.createElement("p");
+                const roomD = document.createElement("p");
+                const roomB = document.createElement("btn");
+                roomB.classList.add('roomB');
+                roomB.innerHTML = "입장";
+                roomB.onclick = goSubRoom;
+
+                let rpn2 = rpn + "명";
+                let rd2 = rd + "m";
+
+
+                roomN.textContent = rn;
+                roomPN.textContent = rpn2;
+                roomD.textContent = rd2;
+
+                roomN.classList.add('roomN');
+                roomPN.classList.add('roomPN');
+                roomD.classList.add('roomD');
+
+                newRoom.appendChild(roomN);
+                newRoom.appendChild(roomPN);
+                newRoom.appendChild(roomD);
+                newRoom.appendChild(roomB);
+                newRoom.classList.add('newRoom');
+
+                return newRoom;
+
+                function goSubRoom(){
+                window.location.href = "subRoom.html?" + username + "@" + rn + "@" + rpn;
+                }
+            }
+
+            
+
+            function goMakeRoom(){
+                window.location.href = "makeRoom.html?" + username;
+            }
+
+
+            </script> 
+    </head>
+    <body>
+        <div id="main_div">
+
+            <div id="main_div_1">
+                <p id="main_p_1"></p>
+            </div>
+
+            <div id="main_div_2">
+                <p id="main_p_2">방 만들기</p>
+                <button id="main_btn_1" onclick="goMakeRoom()">만들기</button>
+            </div>
+
+            <div id="main_div_3">
+                <p id="main_p_3">방 찾기</p>
+            </div>
+
+        </div>
+
+        
+
+    </body>
+</html>
