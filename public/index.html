@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = 'UTF-8'/>
+        <title>index</title>
+        <link rel = "stylesheet" type = "text/css" href = "main.css"/> 
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>
+            function sendUsername() {
+                const username = document.querySelector('#index_input_1').value;
+                window.location.href = "main.html?" + username;
+            }
+        </script> 
+    </head>
+    <body>
+        
+        <div id="index_div">
+            <p id="index_p">Smart Phone Speaker(가제)</p>
+            <p id="index_p_1">Enter your username :</p>
+            <input id="index_input_1" name = "username" type = "text" size = 10 placeholder = "[username]" autofocus autocomplete="on" required/>
+            <button id="index_btn_1" onclick="sendUsername()">시작</button>
+        </div>
+
+    </body>
+</html>
