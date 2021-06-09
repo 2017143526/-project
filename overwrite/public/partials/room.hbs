@@ -1,0 +1,15 @@
+{{#each rooms}}
+<link rel = "stylesheet" type = "text/css" href = "main.css"/> 
+<div class="newRoom">
+  
+    <p class="roomN">{{this.name}}</p>
+    <p class="roomI">({{this.distance}}m | {{this.listeners.length}} people)</p>
+  
+  
+    <button class="roomB" onclick="joinRoomAsModerator('{{this.id}}')">방장으로
+        입장</button>
+    <button class="roomB" onclick="joinRoomAsListener('{{this.id}}')">청취자로
+      입장</button>
+    
+</div>
+{{/each}}
